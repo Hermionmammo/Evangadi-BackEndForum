@@ -7,18 +7,19 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const pool = mysql2.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.MYSQL_DB,
-  connectionLimit: 10,
-});
-pool.getConnection(function (err, connection) {
-  console.log("Database Connected");
-});
-// const pool = mysql2.createConnection(process.env.DATABASE_URL);
-// console.log('Connected to PlanetScale!');
+// const pool = mysql2.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASS,
+//   database: process.env.MYSQL_DB,
+//   connectionLimit: 10,
+// });
+// pool.getConnection(function (err, connection) {
+//   console.log("Database Connected");
+// });
+
+const pool = mysql2.createConnection(process.env.DATABASE_URL);
+console.log('Connected to PlanetScale!');
 
 let registration = `
 CREATE TABLE IF NOT EXISTS registrations(
